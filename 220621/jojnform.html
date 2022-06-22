@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>sign up</title>
 </head>
 <style>
     .main {
         margin: 0 auto;
-        padding: 20px 0 0 30px;
-        width: 400px;
-        height: 600px;
+        padding: 20px 0 0 10px;
+        width: 450px;
+        height: 700px;
         border-radius: 10px;
         border: 2px solid steelblue;
     }
@@ -27,9 +27,9 @@
 
     input {
         vertical-align: middle;
-        width: 200px;
+        width: 350px;
         padding: 10px;
-        margin: 5px 0 30px 0;
+        margin: 5px 0 0 0;
         border-radius: 10px;
         border: 2px solid steelblue;
     }
@@ -49,6 +49,9 @@
         <div class="content">
             <label for="userId">아이디</label><br>
             <input id="userId" type="text" placeholder="영어 소문자, 숫자 4-10자" maxlength="10" onchange="checkId()"><br>
+            <label for="userPw">비밀번호</label><br>
+            <input id="userPw" type="password" placeholder="최소 8자(소문자, 숫자, @,$,!,%,*,?,&) 하나 이상 포함" minlength="8" onchange="checkPw()"><br>
+            <span id="testPw">검사</span><br>
             <label for="userName">이름</label><br>
             <input id="userName" type="text" placeholder="이름을 입력하세요" onchange="checkName()"><br>
             <label for="userNum">전화번호</label><br>
@@ -68,6 +71,17 @@
         } else
         alert("아이디는 영어 소문자,숫자로 4-10자 이내로 작성해주세요");
     }
+    function checkPw() {
+        let userPw = document.querySelector('#userPw').value;
+        let reg = new RegExp(/^(?=.*[a-z])(?=.*\d)(?=.*[$@$!%*?&])[a-z\d$@$!%*?&]{8,}/);
+        if (reg.test(userPw) == true) {
+            return true;
+        } else
+        alert(`
+        비밀번호는 최소 8자이며
+        영어 소문자, 숫자, 특수 문자(@,$,!,%,*,?,&) 하나 이상을 
+        반드시 포함해야 합니다`);
+    }
     function checkName() {
         let userName = document.querySelector('#userName').value;
         let reg = new RegExp(/^[가-힣]+$/g);  //+$ ??
@@ -79,10 +93,7 @@
     function checkTel() {
         let userNum = document.querySelector('#userNum').value;
         let reg = new RegExp(/^\d{3}-\d{3,4}-\d{4}$/);  
-        //하이픈 입력안해도 되는 방법 https://gurtn.tistory.com/86
-        //방법1) 
-        userNum.replace(/^\d{3}-\d{3,4}-\d{4}$/, `$1-$2-$3`);//그룹을 순서대로 배치
-        if (reg.test(userNum) == true) {
+        if(reg.test(userNum) == true) {
             return true;
         }else
         alert("번호를 다시 입력해주세요");
@@ -96,7 +107,7 @@
         alert("이메일을 다시 입력해주세요");
     }
     function welcome(){
-        if((checkEmail() == true) && (checkId() == true) && (checkTel() == true) &&(checkName() == true)){
+        if((checkEmail() == true) && (checkPw() == true) && (checkId() == true) && (checkTel() == true) &&(checkName() == true)){
         alert("가입을 환영합니다");
     }
     }
