@@ -28,14 +28,14 @@
 // git 저장소를 생성한 폴더에서 
 // 숨김파일 보기를 체크하면 .git이라는 폴더가 있다. 
 
-// git add 커밋을 추가하는데 git 저장고에 추가하려고 대기 
+// git add 커밋을 추가하는데 git 저장소에 추가하려고 대기 
 // git add README.md 이렇게 쓰면 git 저장소에 README.md 추가하려고 대기 
 
 // git commit -m 커밋 메시지를 작성할 수 있다. m은 메시지
 // git commit -m "first commit" 이렇게 쓰면 저장소에 추가하면서 
 // 작업 내용 메세지는 first commit이 메시지가 보인다 
 
-// git branch -M 아건 마스터 브런치를 설정한다, M은 master(기본값)
+// git branch -M 이건 마스터 브런치를 설정한다, M은 master(기본값)
 // git branch -M main 이렇게 하면 main이라는 마스터 브런치 설정
 
 // git remote add origin  깃저장소 링크를 추가한다 
@@ -48,6 +48,11 @@
 // git push -u origin main 깃 저장소에 첫 커밋을 푸쉬
 
 //-----------------------------------------------------------220622
+//cd "들어갈 폴더" : 경로 변경하는데 
+//cd .. : 경로가 한 단계 위로 올라간다 
+  
+//ls : 경로에 있는 파일 구조를 볼 수 있다.  
+
 //git 저장소가 초기화 된 경로인지 확인 잘 하고 사용
 //경로는 git init을 한 경로
 
@@ -56,3 +61,43 @@
 //M : 저장소에 파일은 있고 내용이 변경되었을 때
 //D : 저장소에 있는 파일이 제거되었을 때
 
+//1. git 설정
+//사용자 설정
+//git config --global user.name"자기 닉네임"
+//git config --global usrt.email "자기 이메일"
+
+//설정 정보 조회
+//git 설정이 제대로 되었는지 확인
+//git config --global --list
+
+//git 저장소 초기화 저장소 생성
+//git의 저장소로 지정할 경로로 이동해서
+//git init
+
+//git 저장소 복제는 (파일 내려받기)
+//get clone (url)
+
+//git 저장소 추가
+//git remore add origin "git저장소 url"
+
+//git 사용법
+//스테이징에 추가
+//git add 파일명(확장자까지)
+
+//커밋 메시지
+//git commit -m "작업 내용"
+
+//현재 브런치 변경
+//git switch "브런치 이름"
+
+//로컬 깃 브런치 목록 전부보기
+//git branch -a
+
+//브런치 목록 전부보기
+//git branch -r
+
+//브런치 추가 
+//git branch "추가하고 싶은 브런치 이름"
+
+//브런치 제거 
+//git branch -d "제거할 브런치 이름"

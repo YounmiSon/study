@@ -14,28 +14,30 @@
         <input id="_time" type="time" />
         <input id="_todo" type="text" />
         <button id="addList">추가</button>
-        <ol id="listarea"></ol>
+        <tr id="todolist">
+        </tr>
     </div>
 </body>
 <script>
     addList.onclick = function () {
-        let content = _date.value + " " + _time.value + " " + _todo.value;
-        let el = document.createElement('li');
+        let content = _date.value + " | " + _time.value + " | " + _todo.value;
+        let el = document.createElement('td');
         el.innerHTML = content;
         el.className = "new";
 
-
+        let delBox = document.createElement('td');
         let delBtn = document.createElement("button");
         delBtn.innerHTML = "삭제";
 
         //Child 쓸 때 대문자 확인
         delBtn.onclick = function(){
-            listarea.removeChild(el);
-            listarea.removeChild(delBtn); 
+            todolist.removeChild(el);
+            todolist.removeChild(delBtn); 
         } 
 
-        listarea.appendChild(el);
-        listarea.appendChild(delBtn);
+        //체크박스 만들기
+        todolist.appendChild(el);
+        todolist.appendChild(delBtn);
     }
 </script>
 
