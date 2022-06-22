@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        width: 800px;
+        height: 800px;
+        display: flex;
+        /*flex 주면 부모 사이즈에서 자식 div 갯수만큼 나눠서 줘버림
+        자식에서 사이즈 지정해도 적용 안됨*/
+        flex-wrap: wrap;
+    }
+
+    .box {
+        width: 400px;
+        height: 400px;
+        border: 1px solid red;
+        box-sizing: border-box;
+    }
+
+    #item {
+        width: 100%;
+        height: 100%;
+        background-color: bisque;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <!--draggable : 드래그를 허용하는 어트리뷰트 true false로 설정-->
+            <div id="item" class="item" draggable="true"></div>
+        </div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</body>
+<script>
+    //drag할 target을 넣어줄 변수 초기에 null
+    let _target =null;
+    //ondragstart : 드래그가 시작될 때
+    document.ondragstart = function (e) {
+        //e.target에 item 클래스가 있으면 
+        if (e.target.classList.contains('item')) {
+            //_target: 드래그가 시작될 때 이벤트의 타겟을 넣어준다
+            _target = e.target;
+            //타겟이 잘 잡혔는지 확인하려고 스타일 입힘
+            //일반 css에서 쓰는 하이픈(-)이 포함된 이름은 
+            //-+바로 뒷글자 => 를 지우고 대문자로 바꿔준다 
+            //ex.background-color => backgroundColor 이런식으로
+            e.target.style.backgroundColor = "red";
+        }
+    };
+
+    //ondragstart : 드래그가 끝났을 때
+    document.ondragend = function (e) {
+        //e.target에 item 클래스가 있으면
+        //드래그가 끝나서 _target을 비워줌ㄴ
+        _target == null;
+        if (e.target.classList.contains('item')) {
+            //처음 설정했던 컬러로 backgroundColor 변경
+            e.target.style.backgroundColor = "bisque";
+        }
+    };
+
+    //ondragenter : 드래그를 해서 다른 요소 안으로 마우스가 올려졌을 때
+    document.ondragenter = function(e){
+        //타겟이 box 클래스를 가지고 있으면
+        if(e.target.classList.contains('box') && _target !== null){
+            e.target.style.backgroundColor = "green";
+        }
+    };
+
+    //ondragleave : 드래그해서 마우스가 요소 위에 있다가 
+    //요소 위에서 나갔을 때
+    document.ondragleave = function(e){
+        //타켓이 box 클래스를 가지고 있으면
+        if(e.target.classList.contains('box') && _target !== null){
+            e.target.style.backgroundColor = "transparent";
+        }
+    };
+
+    //ondragover : 드롭 대상에서 이벤트를 발생할 수 있게
+    document.ondragover = function(e){
+        if(e.target.classList.contains('box') && _target !== null){
+            e.preventDefault();
+        }
+        //드롭을 허용하도록 preventDefault() 호출
+        
+    }
+
+    //ondrop : 드래그를 하다가 마우스 버튼을 뗐을 때
+    document.ondrop = function(e){
+        //타겟이 box 클래스를 가지고 있으면
+        if(e.target.classList.contains('box') && _target !== null){
+            //타겟의 backgroundColor를 다시 투명하게
+            e.target.style.backgroundColor = "transparent";
+            //타겟에 처음 드래그 시작해서 변수에 전달한 item을 
+            //드래그하다가 놓은 타켓이 box면 타겟에 appendChild를 사용해
+            //자식요소로 item이 담긴 변수를 넣는다
+            e.target.appendChild(_target);
+        }
+    };
+
+
+</script>
+</html>

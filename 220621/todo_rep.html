@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+        <input id="_date" type="date" />
+        <input id="_time" type="time" />
+        <input id="_todo" type="text" />
+        <button id="addList">추가</button>
+        <ol id="listarea"></ol>
+    </div>
+</body>
+<script>
+    addList.onclick = function () {
+        let content = _date.value + " " + _time.value + " " + _todo.value;
+        let el = document.createElement('li');
+        el.innerHTML = content;
+        el.className = "new";
+
+
+        let delBtn = document.createElement("button");
+        delBtn.innerHTML = "삭제";
+
+        //Child 쓸 때 대문자 확인
+        delBtn.onclick = function(){
+            listarea.removeChild(el);
+            listarea.removeChild(delBtn); 
+        } 
+
+        listarea.appendChild(el);
+        listarea.appendChild(delBtn);
+    }
+</script>
+
+</html>
