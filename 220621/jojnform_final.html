@@ -78,7 +78,7 @@
     </div>
 </body>
 <script>
-    //onchange에 실행될 함수들
+    //onchange 실행될 함수들
     function checkId() {
         let userId = document.querySelector('#userId').value;
         let reg = new RegExp(/^[a-z0-9]{4,10}$/);
@@ -134,8 +134,7 @@
     }
     function welcome(){
         if((checkEmail() == true) && (checkPw() == true) && (checkId() == true) && (checkTel() == true) &&(checkName() == true)){
-        alert("가입을 환영합니다");
-
+        alert(`${document.querySelector('#userName').value}님 가입을 환영합니다!`);
     }
     }
 </script>
