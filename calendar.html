@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link href='calendar/cal.css' rel='stylesheet' />
+    <script src='calendar/ko.js'></script>
+    <script src='calendar/cal.js'></script>
+    <title>알립니다</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth'
+          });
+          calendar.render();
+        });
+
+        var calendar = new Calendar(calendarEl, {
+            dateclick: function(){
+                prompt('')
+            }
+        })
+      </script>
+      <script>
+        let calendar = new Calendar(calendarEl, {
+            events: [
+                {
+                    title: 'test title',
+                    start: '2022-06-28',
+                    end: '2022-06-29'
+                }
+            ]
+        })
+      </script>
+</head>
+<style>
+    #headerwrap {
+        position: fixed;
+        width: 100%;
+        background-color: #fff;
+        border-bottom: 1px solid #FFF987;
+        z-index: 2;
+    }
+
+    #header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 1200px;
+        height: 90px;
+        margin: 0 auto;
+    }
+
+    #nav {
+        display: flex;
+    }
+
+    .nav_menu {
+        position: relative;
+        display: inline-block;
+        padding: 0 25px;
+        font-size: 1.5em;
+        font-weight: 800;
+        letter-spacing: -5;
+        cursor: pointer;
+    }
+
+    /*nav 드롭다운 호버*/
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #F9F9F9;
+        font-weight: 400;
+        width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        font-size: 0.8em;
+        display: block;
+    }
+   
+    .dropdown-content a:hover {
+        background-color: #FFF987
+    }
+
+    .nav_menu:hover .dropdown-content,
+    .userInfo:hover .dropdown-content {
+        display: block;
+    }
+    .nav_menu:hover{
+        transform: scale( 1.1 );
+    }
+    /*userInfo*/
+    .userInfo {
+        position: relative;
+        display: inline-block;
+    }
+    .userIcon{
+        border: none;
+        background-color: transparent;
+    }
+</style>
+<style>
+    .calendarwrap{
+        width: 1200px;
+        padding-top: 120px;
+        margin: 0 auto;
+        background-color: #fff;
+    }
+    .selectedByUser{
+        width: 500px;
+        height: 300px;
+        background-color: bisque;
+        margin: 0 auto;
+    }
+</style>
+<body>
+    <div id="headerwrap">
+        <div id="header">
+            <a href="index.html"><img src="./img/logo/logo.png" height="70px"></a>
+            <div id="nav">
+                <div class="nav_menu">
+                    <span>꿀단지</span>
+                    <ul class="dropdown-content">
+                        <li class="ten on"><a href="#">10대 꿀단지</a></li>
+                        <li class="twenty"><a href="#">20대 꿀단지</a></li>
+                        <li class="thirty"><a href="#">30대 꿀단지</a></li>
+                        <li class="fourty"><a href="#">40대 꿀단지</a></li>
+                        <li class="fifty"><a href="#">50대 꿀단지</a></li>
+                        <li class="sixty"><a href="#">60대 꿀단지</a></li>
+                    </ul>
+                </div>
+                <div class="nav_menu">
+                    <span>홍보관</span>
+                    <ul class="dropdown-content">
+                        <li><a href="#">제도알림</a></li>
+                        <li><a href="#">서비스홍보</a></li>
+                        <li><a href="#">어플홍보</a></li>
+                        <li><a href="#">기관홍보</a></li>
+                        <li><a href="#">기업홍보</a></li>
+                    </ul>
+                </div>
+                <div class="nav_menu">
+                    <span>알립니다</span>
+                    <ul class="dropdown-content">
+                        <li><a href="#">주알림</a></li>
+                        <li><a href="#">달알림</a></li>
+                        <li><a href="#">상시알림</a></li>
+                    </ul>
+                </div>
+                <div class="nav_menu">
+                    <span>문의하기</span>
+                </div>
+            </div>
+            <div class="userInfo">
+                <button class="userIcon"><img src="./img/icon/account.png" alt=""></button>
+                <ul class="dropdown-content">
+                    <li><a href="#">로그인</a></li>
+                    <li><a href="#">회원가입</a></li>
+                    <li><a href="#">마이페이지</a></li>
+                    <li><a href="#">1:1 문의</a></li>
+                </ul>
+            </div>
+        </div>
+    </div> 
+    <!--캘린더에서 클릭 하면 관심 일정이 담기도록-->
+    <div class="calendarwrap">
+        <div class="selectedByUser"></div>
+        <div id='calendar'></div>
+    </div>
+</body>
+</html>
