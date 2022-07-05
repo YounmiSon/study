@@ -7,7 +7,7 @@ function setMenu(_menu) {
     document.querySelector("nav li." + _menu).classList.add("on");
     document.querySelector("main").className = _menu;
   }
-  
+  //dfdf
   // 정렬 방식
   var sorts = {
     recent: function (a, b) { return (a.idx > b.idx) ? -1 : 1 },
