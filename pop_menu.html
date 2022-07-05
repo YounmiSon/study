@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+</head>
+<style>
+    body{
+        position: relative;
+        overflow: hidden;
+    }
+    .goMain {
+        position: absolute;
+        top: 10%;
+        left: 10%;
+    }
+
+    .box {
+        position: absolute;
+        right: 50%;
+        top: 20%;
+        width: 50px;
+        height: 50px;
+        background-color: transparent;
+        offset: path('M 400 550 C 800 550 800 50 400 50 C 0 50 0 550 400 550') auto;
+        animation: moveto 12s infinite linear;
+    }
+
+    .box::after {
+        content: url(bee_a.png);
+        display: block;
+    }
+
+    @keyframes moveto {
+        0% {
+            offset-distance: 0%;
+        }
+        100% {
+            offset-distance: 100%;
+        }
+    }
+
+    .menuwrap {
+        display: grid;
+        grid-template-columns: 1.2fr 2fr;
+        justify-content: center;
+        background-color: beige;
+        align-items: center;
+        transition: all 1s ease-in-out;
+    }
+
+    .menuwrap-fold {
+        transform: translateX(2100px);
+    }
+    
+
+    .menu_left {
+        box-sizing: border-box;
+        position: relative;
+        color: white;
+        background-color: orange;
+        padding: 50px;
+        height: 100vh;
+    }
+
+    .menu_top {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 200px;
+    }
+
+    .menu_mid {
+        padding-bottom: 500px;
+    }
+
+    .lang_bal_icon {
+        z-index: 1;
+        display: none;
+    }
+
+    .menu_mid h1 {
+        font-size: 3em;
+        font-weight: 800;
+        position: absolute;
+        animation: slide 1s ease-in-out;
+    }
+
+    @keyframes slide {
+        from {
+            left: -100px;
+        }
+
+        to {
+            left: 50px;
+        }
+    }
+
+    .menu_bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .closeBtn {
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        float: right;
+        width: 40px;
+        cursor: pointer;
+    }
+
+    .honeyJar{
+        position: absolute;
+        bottom: 50px;
+        right: 50px;
+        float: right;
+        width: 100px;
+        cursor: pointer;
+    }
+
+    .menu_right {
+        margin: 0 auto;
+    }
+
+    .menu_list ul {
+        display: flex;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .menu_list ul a:first-child {
+        width: 200px;
+        font-size: 2.5em;
+        font-weight: 800;
+        padding-right: 50px;
+    }
+
+    .menu_list ul a:not(:first-child){
+        width: 100px;
+        text-align: center;
+        padding-right: 18px;
+    }
+
+    .menu_list ul a:not(:first-child):hover {
+        color: orange;
+    }
+</style>
+
+<body>
+    <button class="goMain">다시 페이지 보여주기</button>
+    <div class="menuwrap">
+        <div class="box"></div>
+        <div class="menu_left">
+            <div class="menu_top">
+                <div class="logo"><a href="#"><img src="./img/logo/logo_text.png" height="60px"></a></div>
+                <div>
+                    <a href="#"><img src="./icon/srch.png"></a>
+                    <a class="lang_icon" onclick="showIcon()" href="#"><img src="./icon/lang.png"></a>
+                </div>
+            </div>
+            <div class="menu_mid">
+                <h1>사람들이<br>
+                    꿀을 빨 수 있게 도와주는<br>
+                    우리는 허니비 입니다
+                </h1>
+            </div>
+            <div class="menu_bottom">
+                <div>
+                    <span><a href="#">로그인</a></span>
+                    <span><a href="#">회원가입</a></span>
+                    <span><a href="#">1:1문의</a></span>
+                </div>
+                <div>
+                    <a href="#"><img src="./img/icon/sns_yt.png" width="50px"></a>
+                    <a href="#"><img src="./img/icon/sns_fb.png" width="50px"></a>
+                </div>
+            </div>
+        </div>
+        <img class="closeBtn" src="./icon/close.png">
+        <img class="honeyJar" onclick="flying()" src="./img/logo/logo_img.png">
+        <div class="menu_right">
+            <div class="menu_list">
+                <ul>
+                    <a href="#">
+                        <li>꿀단지</li>
+                    </a>
+                    <a href="#">
+                        <li>10대 꿀단지</li>
+                    </a>
+                    <a href="#">
+                        <li>20대 꿀단지</li>
+                    </a>
+                    <a href="#">
+                        <li>30대 꿀단지</li>
+                    </a>
+                </ul>
+                <ul>
+                    <a href="#">
+                        <li>게임단지</li>
+                    </a>
+                    <a href="#">
+                        <li>공룡게임</li>
+                    </a>
+                    <a href="#">
+                        <li>룰렛</li>
+                    </a>
+                    <a href="#" onclick="alert(`준비 중입니다`)">
+                        <li>(준비 중)</li>
+                    </a>
+                </ul>
+                <ul>
+                    <a href="#">
+                        <li>알림단지</li>
+                    </a>
+                    <a href="#">
+                        <li>정보 캘린더</li>
+                    </a>
+                    <a href="#">
+                        <li>행사 안내</li>
+                    </a>
+                    <a href="#">
+                        <li>나의 일정</li>
+                    </a>
+                </ul>
+                <ul>
+                    <a href="#">
+                        <li>문의하기</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    //꿀단지 클릭하면 벌 날아다니기
+    function flying(){
+        let bee = document.querySelector('.box')
+
+    }
+    //X 아이콘에 마우스 올렸을 때 애니메이션
+    const closeBtn = document.querySelector('.closeBtn')
+    closeBtn.addEventListener("mouseover", () => {
+        closeBtn.style.transition = 'all 0.5s ease-in'
+        closeBtn.style.transform = 'rotate(270deg)'
+    })
+    closeBtn.addEventListener("mouseout", () => {
+        closeBtn.style.transform = 'rotate(-270deg)'
+    })
+    
+    
+    //X 아이콘 누르면오른쪽 슬라이드 하며 메인 페이지 다시 보여줌 
+    const menuwrap = document.querySelector(".menuwrap")
+    const goMain = document.querySelector(".goMain")
+    closeBtn.addEventListener("click", () => {
+        menuwrap.classList.toggle("menuwrap-fold")
+    }) 
+    goMain.addEventListener("click",()=>{
+        menuwrap.classList.toggle("menuwrap-fold")
+    })
+  
+    //써치 아이콘 클릭하면 검색창 내려오기
+
+    //언어 아이콘 클릭하면 KOR/ENG 선택
+    function showIcon() {
+        let langBallon = document.querySelector('.lang_bal_icon')
+        if (langBallon.style.display = "none") {
+            langBallon.style.display = "block"
+        } else {
+            langBallon.style.display = "none"
+        }
+    }
+
+    // branch 확인
+    //ㅇㄹㄴㄹ
+</script>
+
+</html>

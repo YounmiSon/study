@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css">
+</head>
+<style>
+    .cardwrap{
+        padding: 100px 20px 20px 20px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    .hidden {
+        width: 250px;
+        height: 350px;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .card-body img{
+        float: right;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div class="cardwrap">
+        <div class="hidden">
+            <img class="cardPhoto">
+            <div class="cardInfo">
+                <h5 class="cardTitle"></h5>
+                <p class="cardText"></p>
+                <button href="#" class="cardBtn">확인하기</button>
+                <img class="cardLike">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    //json에 내용 담아서 카드 여러개 구현
+    //좋아요 누르면 빨간 하트로 바뀜
+    let likeBtn = document.querySelector('.cardLike')
+    likeBtn.addEventListener("click", ()=>{
+        toggleLike(photo.idx)    
+    })
+
+    // function toggleLike(idx) {
+    //     if()
+    // }
+</script>
+</html>
+<div></div>
