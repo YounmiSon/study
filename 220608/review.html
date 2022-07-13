@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+<body>
+    <div class="content"></div>
+    <div class="box">
+        <div class="con"></div>
+    </div>
+    <div class="box">
+        <div class="con"></div>
+    </div>
+    <div class="box">
+        <div class="con"></div>
+    </div>
+    <div class="box">
+        <div class="con"></div>
+    </div>
+</body>
+<script>
+    let cons = document.querySelectorAll('.box .con');
+    console.log(cons[0].getBoundingClientRect().top);
+    console.log(cons[1].getBoundingClientRect().top);
+    console.log(cons[2].getBoundingClientRect().top);
+    console.log(cons[3].getBoundingClientRect().top);
+
+    window.onscroll = function(){
+        //y좌표 찍어주고
+        console.log(window.scrollY);
+        //그 찍은 y좌표에서 innerHeight 만큼 더함
+        let scroll = window.scrollY + window.innerHeight
+        for(let i = 0; i < cons.length;i ++){
+            if(scroll> cons[i].getBoundingClientRect)
+        
+    };
+};
+
+
+</script>
+</html>

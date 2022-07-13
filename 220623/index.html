@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="gnb"></div>
+</body>
+<script src="gnb.js"></script>
+<script>
+//Gnb를 동적할당 해서 객체를 생성한 것
+// 생성된 객체는 _gnb안에 들어있다.
+    let _gnb = new Gnb(3); 
+    console.log(_gnb.setId());
+</script>
+</html>

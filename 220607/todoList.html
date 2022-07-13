@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        width: 500px;
+        margin: 0 auto;
+        padding: 15px;
+        background-color: bisque;
+    }
+    h1 {
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>TO DO LIST</h1>
+        <input id="_date" type="date" placeholder="날짜" />
+        <input id="_time" type="time" placeholder="시간" />
+        <input id="_todo" type="text" placeholder="할 일" />
+        <button id="addList">추가</button>
+        <ol id="todoList">
+        </ol>
+    </div>
+</body>
+
+<script>
+    //추가 버튼을 눌렀을 때
+    addList.onclick = function () {
+        let text = _date.value+" "+ _time.value+ " "+ _todo.value;
+        console.log(text);
+        let el = document.createElement("li");
+        el.innerHTML = text;
+        el.className = "new";
+
+    //생성된 리스트에 삭제 버튼 만들고 함께 사라지게 만들기
+        let delBtn = document.createElement("button");
+        delBtn.innerHTML = "삭제";
+        
+        delBtn.onclick = function(){
+            todoList.removeChild(el);
+            todoList.removeChild(delBtn);
+        }
+    
+    //만들어둔 li와 delBtn 나타나게 만들기
+        todoList.appendChild(el);
+        todoList.appendChild(delBtn);
+    }
+</script>
+
+</html>

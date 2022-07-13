@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .content {
+        height: 100vh;
+    }
+
+    .box {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+    }
+
+    .con {
+        position: absolute;
+        left: 100%;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        background-color: black;
+        transition: 1s;
+    }
+
+    .active {
+        left: 0;
+        opacity: 1;
+    }
+    
+    .test{
+        width: 200px;
+        height: 200px;
+        background-color: black;
+    }
+</style>
+
+<body>
+    <div class="content"></div>
+    <div class="box">
+        <div class="con"></div>
+    </div>
+    <div class="box">
+        <div class="con"></div>
+    </div>
+    <div class="box">
+        <div class="con"></div>
+    </div>
+    <div class="box">
+        <div class="con"></div>
+    </div>
+</body>
+<script>
+    let cons = document.querySelectorAll('.box .con'); //>배열로 나옴
+    //getBoundingClientRect 태그의 사각면 중에 키 값으로 top을 가져옴
+    //화면 상단 부터 대상의 element의 처음 위치 값
+    console.log(cons[0].getBoundingClientRect().top);
+    console.log(cons[1].getBoundingClientRect().top);
+    console.log(cons[2].getBoundingClientRect().top);
+    console.log(cons[3].getBoundingClientRect().top);
+
+    window.onscroll = function () {
+        //window.scrollY 윈도우의 스크롤 Y 꼭대기 값
+        console.log(window.scrollY);
+        let scroll = window.scrollY + window.innerHeight;
+        for (let i = 0; i < cons.length; i++) {
+            if (scroll > cons[i].getBoundingClientRect().top) {
+                //con[i].classList.contains('active') active 클래스가 있는지 확인 
+                //classList.contains('클래스의 이름 여기')
+
+             if (!cons[i].classList.contains('active')) {
+                    //active 클래스 추가
+                    cons[i].className += " active";
+                }
+
+            } else {
+                //active 클래스 삭제
+                cons[i].classList.remove("active");
+            }
+        }
+    };
+</script>
+<script src="index.js"></script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .content {
+        display: none;
+        /*처음에 안보이게*/
+    }
+</style>
+
+<body>
+    <div class="content">
+        <!--ctrl + alr + 방향키 : 위/아래로 커서 확장-->
+        <button class="scissors">가위</button>
+        <button class="rock">바위</button>
+        <button class="paper">보</button>
+    </div>
+    <button id="startBtn">시작</button>
+</body>
+<script>
+    const resultType = ['가위', '바위', '보'];
+
+    startBtn.onclick = function () {
+        startBtn.style.display = "none";
+        document.querySelector('.content').style.display = "block";
+    };
+
+    let playerBtns = document.querySelectorAll('.content button');
+    // 선택자에 맞는 애들을 배열 형태로 다 가져옴
+    console.log(playerBtns);
+    for (let i = 0; i < playerBtns.length; i++) {
+        playerBtns[i].onclick = function () {
+            //0 1 2가 들어가야하니까
+            console.log(GameResult(i));
+        };
+    };
+
+    function comResult() {
+        return Math.floor(Math.random() * 3);    
+    }
+    
+    function GameResult(playerResult) {
+        switch (playerResult) {
+            case comResult():
+                return "무승부";
+                break;
+            default:
+                if ((playerResult === 0) && (comResult() === 2)) {
+                    return "승리";
+                } else if ((playerResult === 1) && (comResult() === 0)) {
+                    return "승리";
+                } else if ((playerResult === 2) && (comResult() === 1)) {
+                    return "승리";
+                } else {
+                    return "패배";
+                }
+                break;
+        }
+    }
+</script>
+</html>

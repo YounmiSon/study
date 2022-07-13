@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .content {
+        display: none;
+    }
+</style>
+<body>
+    <div class="content">
+        <button class="scissor">가위</button>
+        <button class="rock">바위</button>
+        <button class="paper">보</button>
+    </div>
+    <button id="startBtn">시작</button>
+</body>
+<script>
+    //시작 버튼을 누르면 시작
+    startBtn.onclick = function () { //시작 버튼 누르면 
+        startBtn.style.display = "none"; //시작 버튼은 안보이게 
+        document.querySelector('.content').style.display = "block"; //content 가 보여지게(block으로)
+    }
+    //player는 가위, 바위, 보 버튼을 눌러 선택
+    const chooseArr = ["가위", "바위", "보"];
+
+    //playerBtn 은 content 에 있는 button을 모두 선택
+    let playerBtn = document.querySelectorAll('.content button');
+
+
+    for (let i = 0; i < playerBtn.length; i++) {
+        playerBtn[i].onclick = function () { //button의 0, 1, 2 번째 를 눌렀을 때
+            console.log("PLAYER : " + chooseArr[i]);
+        };
+    };
+    //컴퓨터는 랜덤으로 3가지 중 1가지를 낸다
+    function computer() {
+        switch (Math.floor((Math.random() * 3))) {
+            case 0:
+                computer = "가위"
+                console.log("COM : 가위");
+                break;
+            case 1:
+                computer = "바위"
+                console.log("COM : 바위");
+                break;
+            case 2:
+                computer = "보"
+                console.log("COM : 보");
+                break;
+        }
+    }
+    
+    function GameResult() {
+        if (playerBtn == computer) {
+            console.log("무승부");
+        }
+        else if ((playerBtn == "가위" && computer == "보") || (playerBtn == "바위" && computer == "가위") || (playerBtn == "보" && computer == "바위")) {
+            console.log("승리");
+        }
+        else {
+            console.log("패배");
+        }
+    }
+</script>
+</html>
