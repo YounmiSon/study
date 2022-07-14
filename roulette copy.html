@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .rouletteWrap {
+        position: relative;
+        width: 500px;
+        height: 500px;
+        overflow: hidden;
+        border-radius: 500px;       
+        
+    }
+
+    .id1 {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background-color: blue;
+        transform: rotate(0deg) translate(50%, 50%);
+    }
+
+    .id2 {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background-color: red;
+        transform: rotate(45deg) translate(50%, 50%);
+    }
+    .id3 {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background-color: yellow;
+        transform: rotate(90deg) translate(50%, 50%);
+    }
+
+    .id4 {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background-color: green;
+        transform: rotate(135deg) translate(50%, 50%);
+    }
+
+    .id5 {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background-color: black;
+        transform: rotate(180deg) translate(50%, 50%);
+    }
+    
+    .id6 {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background-color: yellow;
+        transform: rotate(225deg) translate(50%, 50%);
+    }
+    
+    .id7 {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background-color: green;
+        transform: rotate(270deg) translate(50%, 50%);
+    }
+    
+    .id8 {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background-color: purple;
+        transform: rotate(315deg) translate(50%, 50%);
+    }
+    .id9 {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background-color: blue;
+        transform: rotate(315deg) translate(50%, 50%);
+    }
+
+    .arrow {
+        position: absolute;
+        top: 100px;
+        left: 233px;
+        z-index: 1;
+    }
+
+    .roulette {
+        border-radius: 700px;
+        transition: all 1s linear;
+    }
+
+    .rotate_360 {
+        transform: rotate(1800deg);
+    }
+
+    .rotate {
+        animation: rotate_image 1s linear infinite;
+    }
+
+    @keyframes rotate_image {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<body>
+    <div class="rouletteWrap">
+        <div class="id1"></div>
+        <div class="id2"></div>
+        <div class="id3"></div>
+        <div class="id4"></div>
+        <div class="id5"></div>
+        <div class="id6"></div>
+        <div class="id7"></div>
+        <div class="id8"></div>
+        <div class="id9"></div>
+    </div>
+    <button id="startBtn">start</button>
+    <button id="resetBtn">reset</button>
+</body>
+<script>
+    //룰렛 돌아가는 속도, 횟수 등 결과 확률
+    //각도 6등분, 랜덤으로 6개 각도 중 하나가 걸리게
+
+    //버튼을 누르면 시작
+    const startBtn = document.querySelector("#startBtn")
+    const roulette = document.querySelector(".roulette")
+    let isRotate = false
+    let turn = 2
+    startBtn.addEventListener('click', () => {
+        if (!isRotate) {
+            roulette.classList.add("rotate_360")
+            startBtn.classList.add("rotate_360")
+            isRotate = true
+        }
+    })
+    let res = deg[Math.floor(Math.random() * deg.length)]
+    roulette.addEventListener("transitionend", () => {
+        if (isRotate) {
+            roulette.style = `transform : rotate(${res}deg);`
+            isRotate = false
+        }
+    })
+
+
+    document.querySelector('#resetBtn').addEventListener('click', () => {
+        isRotate = false
+        roulette.style = ""
+        roulette.classList.remove("rotate_360")
+    })
+
+
+</script>
+
+</html>

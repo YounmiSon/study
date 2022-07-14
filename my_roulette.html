@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.rlbody{
+    background: url(./socute.png) center no-repeat;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+
+.rotate{
+    animation: rtt 1s linear infinite;
+}
+
+@keyframes rtt {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(720deg);
+    }
+}
+</style>
+<body>
+    <div class="rlbody">
+        <!-- <div class="rltable">1</div>
+        <div class="rltable">2</div>
+        <div class="rltable">3</div>
+        <div class="rltable">4</div>
+        <div class="rltable">5</div>
+        <div class="rltable">6</div> -->
+    </div>
+    <button class="playrl">start</button>
+</body>
+<script>
+const rlt = document.querySelector(".rlbody")
+const btn = document.querySelector(".playrl")
+
+btn.addEventListener("click", ()=>{
+        rlt.classList.toggle('rotate')
+})
+</script>
+</html>
