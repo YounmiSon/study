@@ -1,0 +1,61 @@
+.scoreBoard {
+    width: 100%;
+    height: 100vh;
+}
+
+.scoreBoard .inner {
+    background-color: steelblue;
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    font-size: 22px;
+}
+
+/*.scoreBoard .inner 바로 밑의 span만 선택*/
+/*span: first-child 첫번째 요소만
+: last-child 마지막 요소만
+:nth-of-type(여기에 index) 해당요소만*/
+
+.scoreBoard .inner > span{ 
+    display: block;
+}
+
+.play-score:first-child {
+    border-right: 1px solid white;
+}
+
+.play-score {
+    position: relative;
+    width: 50%;
+    height: 600px;
+    background-color: skyblue;
+}
+
+.pos {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /*transform: translate(x포지션, y포지션);*/
+    transform: translate(-50%, -50%);
+    background-color: steelblue;
+    width: 200px;
+    height: 200px;
+}
+
+.score-name {
+    font-size: 25px;
+    text-align: center;
+    margin-top: 50px;
+}
+/*,로 두 클래스 모두 스타일을 적용할 수 있다.*/
+.computer-score, .player-score{
+    font-size: 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-around;
+}
+

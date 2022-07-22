@@ -1,0 +1,56 @@
+body{ 
+    height: 100vh; /*브라우저 전체 높이*/
+    overflow: hidden;
+    /*자식 요소가 이 태그 밖으로 나오면 hidden 효과를 준다 (숨긴다)*/
+}
+
+.nav{
+    /*클래스 선택자*/
+    width: 100%;
+    /*width는 태그의 넓이*/
+    height: 50px;
+    /*height는 태그의 높이*/
+    background-color: aqua;
+    /*background-color는 말그대로 태그의 배경색*/
+    position: relative;
+    /*relative: 자신의 위치에서 이동할 수 잇음*/
+    /*absolute: 부모를 기준으로 이동할 수 있음*/
+    /*fixed : 브라우저를 기준으로 고정, 스크롤해서 이동해도 위치가 변하지 않고 따라옴*/
+    z-index: 1;
+    /*position 속성이 함께 있어야 하고, 지정하지 않으면 기본 0으로 같은 레벨의 태그와 순서 정렬이 가능하다*/
+}
+
+.nav button{
+    /*nav클래스 자식에 태그 선택자*/
+    width: 50px;
+    height: 50px;
+    background-color: skyblue;
+    transition: 1s; /*태그의 속성이 바뀌면 바뀌는 시간*/
+}
+
+.nav button:hover {
+    /*nav클래스 자식에 태그 선택자*/
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+}
+
+#slide {
+    position: absolute;
+    top: 50px; /* nav 만큼 내려줌*/
+    left: 100%;
+    width : 100%;
+    height: calc(100% - 50px);
+    /*calc 함수(매개변수 안에 계산식을 작성) 계산된 값을 반환*/
+    background-color: violet;
+    /*border: 3px solid violet;*/
+    /*border 태그의 테두리 속성 첫번째는 테두리의 두깨 두번째는 선의 속성 세번째는 색깔*/
+    box-sizing: border-box;
+    transition: 1s;
+}
+
+#slide.active {
+    left: 0;
+    
+
+}

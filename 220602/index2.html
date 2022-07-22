@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reset.css">
+</head>
+
+<body>
+    <div class="nav">
+        <button>햄버거</button>
+    </div>
+    <div id="slide"></div>
+</body>
+<script>
+    document.querySelector('.nav button').addEventListener('click', function () {
+        if (slide.classList.contains("active")) {
+            //active 클래스가 있으면 제거
+            slide.classList.remove("active");
+        } else {
+            //active 클래스가 없으면 추가
+            slide.classList += "active";
+        }
+        console.log(slide.classList.contains("active"));
+        //slide.classList.contains(클래스명) 클래스가 있으면 true 없으면 false 
+    });
+    //css 셀렉터
+
+//태그 셀렉터
+//div {color: red; } // 이렇게 하면 모든 div 셀렉터
+//p {color: black }
+
+//ID 셀렉터
+//#name { color: red; } // 이렇게 쓰면 id arrtributor가 name인 셀렉터 
+//id는 고유값이니까 한 번만 사용
+
+//class 셀렉터
+//.contents { color: red; } 클래스는 동일한 이름을 가질 수 있다. 
+//contents 클래스를 가지고 있는 모든 요소에 적용 가능, 고유값X
+
+//어트리뷰트 셀렉터 
+//div[href] { color : red; } div에 href가 있는 모든 요소 
+//div[target = "_blank"] { color : red; } div에  target이 있는데 값이 _blank
+//인 요소
+
+//자식 셀렉터
+//.content .name { color : red; } content 클래스의 자식요소인데 name 클래스를 
+//가지고 있는 모든 요소
+//.content > .name { color : res; } content클래스의 자식요소 인데
+//부모 바로 아래 자식 요소 
+
+//형제 셀렉터 
+//.content + .content2 { color : red; }
+//content 클래스의 같은 레벨(옆에있는)의 형제로 있는 선택 요소
+
+//가상 클래스 셀렉터
+//a: hover { color : red } a에 마우스를 올렸을 때 일어나는 스타일
+//input: focus { color : red; } input이 포커스 상태일 때 일어나는 스타일
+
+//다수의 클래스 선택자
+//content.avtive { color : red; } content 클래스도 가지고 있고 
+//active 클래스도 가지고 있는 요소
+
+</script>
+
+</html>
