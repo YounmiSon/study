@@ -40,13 +40,13 @@ function callFun() {
 
 //전역변수, 지역변수 콜백 함수의 파라미터로 전달
 //전역변수 를  선언
-let myName = "윤철";
+let myName = "강아지";
 
 //매개변수로 함수를 받을 함수를 만듦
 function callBackFun(call) {
   // call 자리의 이름은 임의로 지정가능, 매개변수를 받을거임
   //지역 변수 선언
-  let youName = "병현";
+  let youName = "고양이";
   call(youName);
 }
 
@@ -56,7 +56,7 @@ function callName(you) {
   //매개 변수로 넘길 함수를 선언해둔 myName 전역 변수를 사용하고
   //자신이 받은 매개 변수 you를 사용한다.
   //
-  console.log(myName + "이랑" + you + "사이가 좋아");
+  console.log(myName + "와 " + you + "가 세상을 지배한다");
 }
 
 //callBackFun 함수를 사용을 하는데 매개 변수로 callName 함수의 이름을 전달
@@ -82,7 +82,7 @@ let con = {
   },
 };
 
-// let _con = new con("윤철");
+// let _con = new con("멍멍");
 // console.log(_con);
 // _con.setname();
 
@@ -92,7 +92,7 @@ function getName(firstName, lastName, callBack) {
   console.log(this);
 }
 
-getName("나 병현", "나 윤철", con.setname);
+getName("나 멍멍", "나 냥냥", con.setname);
 console.log(con.name);
 console.log(window.name);
 
@@ -113,7 +113,7 @@ function getName(firstname, lastname, callBack) {
   callBack(firstname, lastname);
 }
 
-getName("지니", "윤철", con.setname);
+getName("멍멍", "냥냥", con.setname);
 console.log(window.name);
 
 4명 들어간 함수 만들기
