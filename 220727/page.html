@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .line{
+            overflow: hidden;
+        }
+        .seat{
+            margin: 2px;
+            float: left;
+            width: 30px;
+            height: 30px;
+            border-radius: 3px;
+            /* background-color: gray; */
+        }
+        .enable{
+            background-color: gray;
+        }
+        .enable:hover{
+            background-color: rgb(152, 152, 152);
+        }
+        .disable{
+            background-color: pink;
+        }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+</head>
+<body>
+    <div>영화관</div>
+</body>
+<script>
+    const socket = io.connect();
+    //ajax 아작스 사용할 것, 제이쿼리로 작성
+    socket.on('reserve', (data) => {
+        let $target = $("div[data-x =" + data.x + "][data-y = " + data.y + "]")
+        // $target.classList.remove('disable')과 같다
+        $target.removeClass('enable');
+        // $target.classList.add('disable')과 같다
+       $target.addClass('disable');
+    });
+
+    //초기 좌석 생성
+    // window.onload 처럼 load가 됐을 때 실행하는 함수
+    $(window).ready(function () {
+        // seat를 click했을 때 실행 할 함수
+        const onClickSeat = function () {
+            // 제이쿼리 객체로 만드는 이유는 제이쿼리 함수나 기능을 사용하기 위해서임
+            // $(객체) : $() 괄호안에 있는 DOM 객체를 제이쿼리 객체로 바꿈
+            // document.querySelector(this).classList.contains('disable') 와 같다
+            // class유뮤 확인 hasClass
+            // disable 클래스가 붙어있으면 여기서 끝
+            if ($(this).hasClass('disable')) {
+                return;
+            }
+            // 좌석을 클릭하면 이벤트가 발생한 좌석의 data-x, data-y 속성을 서버로 보냄
+            // $(this).attr('data-x')는 
+            // <div data-x = "1"></div>의 data-x = "1" 이 부분
+            // data-x의 값 1의 값을 가져온다
+            let x = $(this).attr('data-x');
+            let y = $(this).attr('data-y');
+            if (confirm('이 좌석을 예매 하시나요?')) {
+                // yes를 눌렀을 때
+                socket.emit("reserve",{
+                    x, // 원래는 x : x인데 어차피 이름 같으니까 짧은 문법으로 씀
+                    y
+                })
+            } else {
+                // no를 눌렀을 때
+                alert('취소 되었습니다')
+            }
+        }
+
+            // 아작스 수행
+            // 더미 객체를 만들어서 서버에 전달하는 이유
+            // 같은 url에 연속적으로 요청이 발생되면 이번에 불러왔던 데이터를 제공할 가능성이 있다
+            // 그래서 현재 시간을 기반으로 url을 매번 다른 형태로 전달
+            $.getJSON('/seats', { dummy: new Date().getTime()}, (data) => {
+            // 좌석을 만들어보자
+            // each 는 js의 forEach와 같다 
+            $.each(data, (indexY, line) => {
+                // 문서 객체를 생성하고 변수 line에 추가 
+                // let line = document.createElement('div');
+                // line.className = "line"; js는 다음과 같다
+                let $line = $("<div></div>").addClass("line");
+                $.each(line, (indexX, seat) => {
+                    /*
+                    `
+                    <div class = "line">
+                        <div class = "seat" data-x = "indexX" data-y = "indexY"></div>
+                    </div>
+                    `;
+                    */
+                    let $output = $("<div></div>", {
+                        class: "seat",
+                        // data-x랑 data-y 속성을 쓴 이유는 이벤트가 실행했을 때
+                        // 좌석의 위치 정보를 알기 위해서
+                        "data-x": indexX,
+                        "data-y": indexY,
+                    }).appendTo($line);
+                    // 좌석이 비어 있으면 enable 클래스와 click 이벤트 추가
+                    if (seat == 1) {
+                        //비어있는 좌석
+                        // $output.addClass('enable').click(function(){}) 이 형태로도 쓸 수 있다
+                        // on() : 해당 이벤트에 연결한다고 보면 됨
+                        // 제이쿼리 이벤트 함수의 on()
+                        $output.addClass('enable').on("click", onClickSeat);
+                    } else if (seat == 2) {
+                        //예약이 되어 있는 좌석
+                        $output.addClass('disable');
+                    }
+                });
+                $line.appendTo("body");
+            });
+        });
+    });
+</script>
+</html>
